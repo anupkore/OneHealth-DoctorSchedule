@@ -78,7 +78,7 @@ public class DoctorScheduleController {
     }
     
     @GetMapping("/schedule/bydoctorid/{doctorId}")
-    public ResponseEntity<List<DoctorSchedule>> findByDoctorId(@PathVariable long doctorId)
+    public ResponseEntity<List<DoctorSchedule>> findByDoctorId(@PathVariable(value = "doctorId") long doctorId)
     {
     	List<DoctorSchedule>obj = service.findByDoctorId(doctorId);
     	return ResponseEntity.ok().body(obj);
