@@ -27,6 +27,7 @@ import com.oneHealth.DoctorSchedule.service.DoctorScheduleService;
  * @version 1.0
  */
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/doctors")
 public class DoctorScheduleController {
 
