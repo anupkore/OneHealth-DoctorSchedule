@@ -77,10 +77,10 @@ public class DoctorScheduleController {
         return new ResponseEntity<>("Doctor Schedule deleted Successfully", HttpStatus.OK);
     }
     
-    @GetMapping("/bydoctorid/{doctorId}")
-    public ResponseEntity<List<DoctorSchedule>> findByDoctorId(@PathVariable(value = "doctorId") long doctorId)
-    {
-    	List<DoctorSchedule>obj = service.findByDoctorId(doctorId);
-    	return ResponseEntity.ok().body(obj);
+    @GetMapping("/getDoctorScheduleByDoctorID/{doctorId}")
+    public ResponseEntity<List<DoctorSchedule>> getDoctorSchduleByDoctorID(@PathVariable(value = "doctorId") Long doctorId){
+        List<DoctorSchedule> obj = service.findByDoctorId(doctorId);
+        logger.info("In Controller - Doctor Schedule Retrieved: " + obj);
+        return ResponseEntity.ok().body(obj);
     }
 }
