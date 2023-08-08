@@ -77,7 +77,7 @@ public class DoctorScheduleController {
         return new ResponseEntity<>("Doctor Schedule deleted Successfully", HttpStatus.OK);
     }
     
-    @GetMapping("/getDoctorScheduleByDoctorID")
+    @PostMapping("/getDoctorScheduleByDoctorID")
     public ResponseEntity<List<DoctorSchedule>> getDoctorSchduleByDoctorID(@RequestParam(name = "doctorId") Long doctorId){
         List<DoctorSchedule> obj = service.findByDoctorId(doctorId);
         logger.info("In Controller - Doctor Schedule Retrieved: " + obj);
