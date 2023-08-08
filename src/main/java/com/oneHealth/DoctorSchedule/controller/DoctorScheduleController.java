@@ -46,9 +46,9 @@ public class DoctorScheduleController {
     }
 
     // Endpoint to retrieve the doctor's schedule information by doctorId from the database.
-    @GetMapping("/getDoctorScheduleByID/{doctorId}")
-    public ResponseEntity<DoctorSchedule> getDoctorSchduleByID(@PathVariable(value = "doctorId") Long doctorId) throws ScheduleNotFoundException {
-        DoctorSchedule obj = service.getDoctorScheduleById(doctorId);
+    @GetMapping("/getDoctorScheduleByID/{slotId}")
+    public ResponseEntity<DoctorSchedule> getDoctorSchduleByID(@PathVariable(value = "slotId") Long slotId) throws ScheduleNotFoundException {
+        DoctorSchedule obj = service.getDoctorScheduleById(slotId);
         logger.info("In Controller - Doctor Schedule Retrieved: " + obj);
         return ResponseEntity.ok().body(obj);
     }
@@ -75,5 +75,12 @@ public class DoctorScheduleController {
         service.deleteScheduleByID(doctorId);
         logger.info("In Controller - Doctor Schedule Deleted Successfully with ID: " + doctorId);
         return new ResponseEntity<>("Doctor Schedule deleted Successfully", HttpStatus.OK);
+    }
+    
+    @GetMapping("/schedule/bydoctorid/{doctorId}")
+    public ResponseEntity<List<DoctorSchedule>> findByDoctorId(@PathVariable long doctorId)
+    {
+    	List<DoctorSchedule>obj = service.findByDoctorId(doctorId);
+    	return ResponseEntity.ok().body(obj);
     }
 }

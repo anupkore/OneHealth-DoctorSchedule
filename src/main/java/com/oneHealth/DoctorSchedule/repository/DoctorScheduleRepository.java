@@ -1,7 +1,9 @@
 package com.oneHealth.DoctorSchedule.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+
 
 import com.oneHealth.DoctorSchedule.entity.DoctorSchedule;
 
@@ -14,7 +16,6 @@ import com.oneHealth.DoctorSchedule.entity.DoctorSchedule;
  * @author Madhavi
  * @version 1.0
  */
-@Repository
 public interface DoctorScheduleRepository extends JpaRepository<DoctorSchedule, Long>{
-
+	List<DoctorSchedule> findByDoctorId(long doctorId);
 }

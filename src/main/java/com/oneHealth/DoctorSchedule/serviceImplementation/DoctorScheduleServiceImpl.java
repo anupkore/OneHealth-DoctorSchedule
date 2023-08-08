@@ -86,4 +86,9 @@ public class DoctorScheduleServiceImpl implements DoctorScheduleService {
         logger.info("In Service - Doctor Schedule Deleted Successfully with ID: " + doctorId);
         return doctorSchedule;
     }
+
+	@Override
+	public List<DoctorSchedule> findByDoctorId(long doctorId) {
+		return repo.findByDoctorId(doctorId);
+	}
 }
