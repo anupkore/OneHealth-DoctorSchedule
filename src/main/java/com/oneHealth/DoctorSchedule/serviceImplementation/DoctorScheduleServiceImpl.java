@@ -1,5 +1,8 @@
 package com.oneHealth.DoctorSchedule.serviceImplementation;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -90,5 +93,22 @@ public class DoctorScheduleServiceImpl implements DoctorScheduleService {
 	@Override
 	public List<DoctorSchedule> findByDoctorId(long doctorId) {
 		return repo.findByDoctorId(doctorId);
+	}
+
+	@Override
+	public List<DoctorSchedule> getTodaysScheduleForDoctor(Long doctorId) {
+		Date today =Date.valueOf(LocalDate.now());
+		List<DoctorSchedule> list1 =  repo.findByDoctorIdAndDate(doctorId, today);
+		List<DoctorSchedule> list2 =  repo.findByDoctorIdAndDateAfterOrderByDateAscStartTimeAsc(doctorId, today);
+		List<DoctorSchedule> list3 =  new ArrayList<>();
+		list3.addAll(list2);
+		list3.addAll(list1);
+		return list3;
+	}
+
+	@Override
+	public List<DoctorSchedule> getUpcomingSchedules(Long doctorId) {
+		Date currentDate = Date.valueOf(LocalDate.now());
+        return repo.findByDoctorIdAndDateAfterOrderByDateAscStartTimeAsc(doctorId, currentDate);
 	}
 }

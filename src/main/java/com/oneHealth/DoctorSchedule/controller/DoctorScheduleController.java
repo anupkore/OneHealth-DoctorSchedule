@@ -1,5 +1,6 @@
 package com.oneHealth.DoctorSchedule.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -82,5 +83,13 @@ public class DoctorScheduleController {
         List<DoctorSchedule> obj = service.findByDoctorId(doctorId);
         logger.info("In Controller - Doctor Schedule Retrieved: " + obj);
         return ResponseEntity.ok().body(obj);
+    }
+    
+    
+    @GetMapping("/todayandupcoming/{doctorId}")
+    public List<DoctorSchedule> getTodaysSchedule(@PathVariable Long doctorId) {
+        
+        // Call the service method to retrieve today's schedule for the doctor
+        return service.getTodaysScheduleForDoctor(doctorId);
     }
 }

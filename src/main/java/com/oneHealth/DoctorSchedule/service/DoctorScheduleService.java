@@ -1,5 +1,6 @@
 package com.oneHealth.DoctorSchedule.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.oneHealth.DoctorSchedule.entity.DoctorSchedule;
@@ -33,5 +34,9 @@ public interface DoctorScheduleService {
     DoctorSchedule deleteScheduleByID(long doctorId) throws ScheduleNotFoundException;
     
     List<DoctorSchedule> findByDoctorId(long doctorId);
+    
+    List<DoctorSchedule> getTodaysScheduleForDoctor(Long doctorId);
+    
+    List<DoctorSchedule> getUpcomingSchedules(Long doctorId);
 
 }

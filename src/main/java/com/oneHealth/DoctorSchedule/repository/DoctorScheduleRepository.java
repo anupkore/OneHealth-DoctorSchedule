@@ -1,5 +1,6 @@
 package com.oneHealth.DoctorSchedule.repository;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,4 +19,6 @@ import com.oneHealth.DoctorSchedule.entity.DoctorSchedule;
  */
 public interface DoctorScheduleRepository extends JpaRepository<DoctorSchedule, Long>{
 	List<DoctorSchedule> findByDoctorId(long doctorId);
+	List<DoctorSchedule> findByDoctorIdAndDate(Long doctorId, Date date);
+	List<DoctorSchedule> findByDoctorIdAndDateAfterOrderByDateAscStartTimeAsc(Long doctorId, Date date);
 }
